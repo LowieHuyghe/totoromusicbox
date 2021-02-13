@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 cd "$( dirname "$0" )"
 
 # If usb device is connected, start maintenance mode
@@ -15,4 +14,6 @@ amixer sset PCM 80% > /dev/null
 
 # Play song
 echo "Playing song"
-mpg123 ./music/spirited-away.mp3
+while true; do
+  mpg123 -z ../music/*.mp3
+done
