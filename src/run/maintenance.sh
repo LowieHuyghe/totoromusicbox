@@ -10,7 +10,9 @@ fi
 echo "Entering maintenance mode"
 
 # Start certain services
+# systemd-timesyncd to finish startup
 start_services=(
+  "systemd-timesyncd"
   "dhcpcd"
   "networking"
   "ssh"
