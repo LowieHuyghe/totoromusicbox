@@ -2,22 +2,17 @@
 set -e
 cd "$( dirname "$0" )"
 
+# If usb device is connected, start maintenance mode
+if lsusb | grep 'Device 002' >/dev/null; then
+  # Maintenance mode
+  echo "Entering maintenance mode"
+  ./run/maintenance.sh &
+fi
+
 # Set volume lower
 echo "Setting volume to 80%"
 amixer sset PCM 80% > /dev/null
 
-if ifconfig | grep eth0 >/dev/null; then
-  # Maintenance mode
-  echo "Entering maintenance mode"
-
-  echo "Start dhcpcd"
-  sudo systemctl start dhcpcd
-  echo "Start networking"
-  sudo systemctl start networking
-  echo "Starting ssh"
-  sudo systemctl start ssh
-else
-  # Play song
-  echo "Playing song"
-  mpg123 ./music/spirited-away.mp3
-fi
+# Play song
+echo "Playing song"
+mpg123 ./music/spirited-away.mp3
