@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 cd "$( dirname "$0" )"
 
-# If usb device is connected, start maintenance mode
-if lsusb | grep 'Device 002' >/dev/null; then
-  # Maintenance mode
-  echo "Entering maintenance mode"
-  ./run/maintenance.sh &
-fi
+# Maintenance
+./run/maintenance.sh &
 
 # Set volume lower
-echo "Setting volume to 80%"
-amixer sset PCM 80% > /dev/null
+echo "Setting volume"
+amixer sset PCM 70% > /dev/null
 
 # Play song
 echo "Playing song"
