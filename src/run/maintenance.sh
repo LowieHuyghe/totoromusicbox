@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
-set -e
 cd "$( dirname "$0" )"
 
-echo "Start dhcpcd"
-sudo systemctl start dhcpcd
+# If usb device is connected, start maintenance mode
+if ! lsusb | grep 'Device 002' >/dev/null; then
+  exit 0
+fi
 
-echo "Start networking"
-sudo systemctl start networking
+# Maintenance mode
+echo "Entering maintenance mode"
 
-echo "Starting ssh"
-sudo systemctl start ssh
+# Start certain services
+start_services=(
+  "dhcpcd"
+  "networking"
+  "ssh"
+)
+for start_service in "${start_services[@]}"; do
+  echo "Start $start_service"
+  sudo systemctl start "$start_service"
+done
