@@ -2,6 +2,15 @@
 set -e
 cd "$( dirname "$0" )"
 
+if [ -z "$UPDATED" ]; then
+  echo "Pulling repo"
+  git pull
+
+  # Run install
+  UPDATED=TRUE ./install.sh
+  exit $?
+fi
+
 # Support mp3
 if ! which mpg123 >/dev/null; then
   echo "Installing mpg123"
@@ -16,3 +25,12 @@ if ! grep "$( pwd )/run.sh" /etc/rc.local >/dev/null; then
 else
   echo "/etc/rc.local already setup"
 fi
+
+echo "Disable dhcpd"
+systemctl disable dhcpcd
+
+echo "Disable wpa_supplicant"
+systemctl disable wpa_supplicant
+
+echo "Disable serial"
+systemctl disable wpa_supplicant
