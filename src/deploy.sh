@@ -6,5 +6,5 @@ ssh pi@10.42.0.107 bash <<EOF
 set -e
 cd totoromusicplayer
 echo "Installing"
-./install.sh
+./src/install.sh
 EOF
