@@ -41,7 +41,7 @@ disable_services=(
   "triggerhappy"
 )
 for disable_service in "${disable_services[@]}"; do
-  if sudo systemctl status "$disable_service" | grep loaded | grep '.service; enabled'; then
+  if sudo systemctl status "$disable_service" | grep loaded | grep '.service; enabled' >/dev/null; then
     echo "Disable $disable_service"
     sudo systemctl disable "$disable_service"
   else
