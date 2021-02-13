@@ -42,6 +42,7 @@ disable_services=(
   "rpi-eeprom-update"
   "rpi-display-backlight"
   "raspberrypi-net-mods"
+  "systemd-timesyncd"
 )
 for disable_service in "${disable_services[@]}"; do
   if sudo systemctl status "$disable_service" | grep loaded | grep '.service; enabled' >/dev/null; then

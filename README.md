@@ -22,4 +22,6 @@ git clone git@github.com:LowieHuyghe/totoromusicplayer.git
 # /boot/config.txt
 disable_splash=1
 boot_delay=0
+dtoverlay=pi3-disable-wifi
+dtoverlay=pi3-disable-bt
 ```
