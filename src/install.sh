@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -e
 cd "$( dirname "$0" )"
 
@@ -20,47 +20,34 @@ else
 fi
 
 # Disable networking by default
-echo "Disable dhcpcd"
-sudo systemctl disable dhcpcd
-echo "Disable wpa_supplicant"
-sudo systemctl disable wpa_supplicant
-echo "Disable networking"
-sudo systemctl disable networking
-
-echo "Disable ssh"
-sudo systemctl disable ssh
-echo "Disable sshswitch"
-sudo systemctl disable sshswitch
-
-echo "Disable rsync"
-sudo systemctl disable rsync
-
-echo "Disable syslog"
-sudo systemctl disable syslog
-echo "Disable rsyslog"
-sudo systemctl disable rsyslog
-
-echo "Disable bluetooth"
-sudo systemctl disable bluetooth
-
-echo "Disable ntp"
-sudo systemctl disable ntp.service
-echo "Disable dphys-swapfile"
-sudo systemctl disable dphys-swapfile.service
-echo "Disable keyboard-setup"
-sudo systemctl disable keyboard-setup.service
-echo "Disable apt-daily"
-sudo systemctl disable apt-daily.service
-echo "Disable wifi-country"
-sudo systemctl disable wifi-country.service
-echo "Disable hciuart"
-sudo systemctl disable hciuart.service
-echo "Disable raspi-config"
-sudo systemctl disable raspi-config.service
-echo "Disable avahi-daemon"
-sudo systemctl disable avahi-daemon.service
-echo "Disable triggerhappy"
-sudo systemctl disable triggerhappy.service
+disable_services=(
+  "dhcpcd"
+  "wpa_supplicant"
+  "networking"
+  "ssh"
+  "sshswitch"
+  "rsync"
+  "syslog"
+  "rsyslog"
+  "bluetooth"
+  "ntp"
+  "dphys-swapfile"
+  "keyboard-setup"
+  "apt-daily"
+  "wifi-country"
+  "hciuart"
+  "raspi-config"
+  "avahi-daemon"
+  "triggerhappy"
+)
+for disable_service in "${disable_services[@]}"; do
+  if sudo systemctl status "$disable_service" | grep loaded | grep '.service; enabled'; then
+    echo "Disable $disable_service"
+    sudo systemctl disable "$disable_service"
+  else
+    echo "$disable_service already disabled"
+  fi
+done
 
 # echo "Show all running services"
 # sudo systemctl list-unit-files --type=service --state=enabled
