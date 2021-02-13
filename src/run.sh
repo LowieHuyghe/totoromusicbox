@@ -10,11 +10,13 @@ if ifconfig | grep eth0 >/dev/null; then
   # Maintenance mode
   echo "Entering maintenance mode"
 
+  echo "Start networking"
+  sudo systemctl start networking
+  echo "Start dhcpcd"
+  sudo systemctl start dhcpcd
+
   echo "Starting ssh"
   sudo systemctl start ssh
-
-  echo "Starting dhcpd"
-  sudo systemctl start dhcpd
 else
   # Play song
   echo "Playing song"

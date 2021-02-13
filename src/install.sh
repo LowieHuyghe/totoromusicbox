@@ -29,8 +29,6 @@ fi
 # Disable networking by default
 echo "Disable dhcpcd"
 sudo systemctl disable dhcpcd
-echo "Disable dhcpcd5"
-sudo systemctl disable dhcpcd5
 echo "Disable wpa_supplicant"
 sudo systemctl disable wpa_supplicant
 echo "Disable networking"
