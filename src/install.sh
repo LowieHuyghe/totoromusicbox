@@ -46,11 +46,31 @@ echo "Disable syslog"
 sudo systemctl disable syslog
 echo "Disable rsyslog"
 sudo systemctl disable rsyslog
-echo "Disable systemd-timesyncd"
-sudo systemctl disable systemd-timesyncd
 
 echo "Disable bluetooth"
 sudo systemctl disable bluetooth
 
+echo "Disable ntp"
+sudo systemctl disable ntp.service
+echo "Disable dphys-swapfile"
+sudo systemctl disable dphys-swapfile.service
+echo "Disable keyboard-setup"
+sudo systemctl disable keyboard-setup.service
+echo "Disable apt-daily"
+sudo systemctl disable apt-daily.service
+echo "Disable wifi-country"
+sudo systemctl disable wifi-country.service
+echo "Disable hciuart"
+sudo systemctl disable hciuart.service
+echo "Disable raspi-config"
+sudo systemctl disable raspi-config.service
+echo "Disable avahi-daemon"
+sudo systemctl disable avahi-daemon.service
+echo "Disable triggerhappy"
+sudo systemctl disable triggerhappy.service
+
 # echo "Show all running services"
 # sudo systemctl list-unit-files --type=service --state=enabled
+# echo "Show startup time"
+# systemd-analyze critical-chain
+# systemd-analyze blame
