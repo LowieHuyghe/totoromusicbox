@@ -2,15 +2,6 @@
 set -e
 cd "$( dirname "$0" )"
 
-if [ -z "$UPDATED" ]; then
-  echo "Pulling repo"
-  git pull
-
-  # Run install
-  UPDATED=TRUE ./install.sh
-  exit $?
-fi
-
 # Support mp3
 if ! which mpg123 >/dev/null; then
   echo "Installing mpg123"
@@ -53,15 +44,26 @@ for disable_service in "${disable_services[@]}"; do
   fi
 done
 
+echo "Setting up totoromusicplayer-service"
+cat <<EOF | sudo tee /etc/systemd/system/totoromusicplayer.service >/dev/null
+[Unit]
+Description=Totoro Music Player
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=$( pwd )/run.sh
+
+[Install]
+WantedBy=basic.target
+EOF
+echo "Enable totoromusicplayer-service"
+sudo systemctl enable totoromusicplayer
+
 # echo "Show all running services"
 # sudo systemctl list-unit-files --type=service --state=enabled
 # echo "Show startup time"
 # systemd-analyze critical-chain
 # systemd-analyze blame
-
-if ! grep "$( pwd )/run.sh" /etc/rc.local >/dev/null; then
-  echo "Please add the following line to /etc/rc.local:"
-  echo "$( pwd )/run.sh & >/dev/null 2>$( pwd )/log.txt"
-else
-  echo "/etc/rc.local already setup"
-fi
