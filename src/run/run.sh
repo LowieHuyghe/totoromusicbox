@@ -6,6 +6,9 @@ cd "$( dirname "$0" )"
 echo "Setting volume"
 amixer sset PCM 70% >/dev/null
 
+# Maintenance
+./maintenance.sh &
+
 # Play song
 echo "Playing song"
 while true; do
