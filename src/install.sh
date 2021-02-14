@@ -50,6 +50,24 @@ for disable_service in "${disable_services[@]}"; do
   fi
 done
 
+boot_config_lines=(
+  "disable_splash=1"
+  "boot_delay=0"
+  "force_turbo=1"
+  # !!! WATCH OUT WITH OVERCLOCK U1 NEEDED!
+  # "dtoverlay=sdhost,overclock_50=100"
+  "dtoverlay=pi3-disable-wifi"
+  "dtoverlay=pi3-disable-bt"
+)
+for boot_config_line in "${boot_config_lines[@]}"; do
+  if ! grep -E "^$boot_config_line\$" /boot/config.txt >/dev/null; then
+    echo "Adding $boot_config_line to /boot/config.txt"
+    echo "$boot_config_line" | sudo tee /boot/config.txt >/dev/null
+  else
+    echo "$boot_config_line already in /boot/config.txt"
+  fi
+done
+
 echo "Setting up totoromp-service"
 cat <<EOF | sudo tee /etc/systemd/system/totoromp.service >/dev/null
 [Unit]
