@@ -50,8 +50,8 @@ for disable_service in "${disable_services[@]}"; do
   fi
 done
 
-echo "Setting up totoromusicplayer-service"
-cat <<EOF | sudo tee /etc/systemd/system/totoromusicplayer.service >/dev/null
+echo "Setting up totoromp-service"
+cat <<EOF | sudo tee /etc/systemd/system/totoromp.service >/dev/null
 [Unit]
 Description=Totoro Music Player
 DefaultDependencies=false
@@ -66,10 +66,10 @@ ExecStart=$( pwd )/run.sh
 [Install]
 WantedBy=basic.target
 EOF
-echo "Disable totoromusicplayer-service"
-sudo systemctl disable totoromusicplayer
-echo "Enable totoromusicplayer-service"
-sudo systemctl enable totoromusicplayer
+echo "Disable totoromp-service"
+sudo systemctl disable totoromp
+echo "Enable totoromp-service"
+sudo systemctl enable totoromp
 
 # echo "Show all running services"
 # sudo systemctl list-unit-files --type=service --state=enabled
