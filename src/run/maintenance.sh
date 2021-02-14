@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 cd "$( dirname "$0" )"
 
+# Sleep 10 seconds first to lower amount off issues.
+sleep 10
+
 # If usb device is connected, start maintenance mode
 if ! lsusb | grep 'Device 002' >/dev/null; then
   exit 0
