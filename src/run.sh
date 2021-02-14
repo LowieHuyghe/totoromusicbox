@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 cd "$( dirname "$0" )"
 
 # Maintenance
@@ -6,7 +7,7 @@ cd "$( dirname "$0" )"
 
 # Set volume lower
 echo "Setting volume"
-amixer sset PCM 70% > /dev/null
+amixer sset PCM 70% >/dev/null
 
 # Play song
 echo "Playing song"
