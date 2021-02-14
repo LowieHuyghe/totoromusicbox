@@ -82,7 +82,7 @@ User=pi
 ExecStart=$( pwd )/service.sh
 
 [Install]
-WantedBy=basic.target
+WantedBy=local-fs.target
 EOF
 echo "Disable totoromp-service"
 sudo systemctl disable totoromp
