@@ -8,6 +8,7 @@ fi
 
 # Maintenance mode
 echo "Entering maintenance mode"
+touch "../../maintenance-$( date +'%Y-%m-%d-%H-%M-%S' ).txt"
 
 # Start certain services
 # systemd-timesyncd to finish startup
