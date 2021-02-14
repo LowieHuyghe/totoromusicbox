@@ -64,10 +64,11 @@ User=pi
 ExecStart=$( pwd )/run.sh
 
 [Install]
-WantedBy=local-fs.target
+WantedBy=basic.target
 EOF
-echo "Enable totoromusicplayer-service"
+echo "Disable totoromusicplayer-service"
 sudo systemctl disable totoromusicplayer
+echo "Enable totoromusicplayer-service"
 sudo systemctl enable totoromusicplayer
 
 # echo "Show all running services"
