@@ -79,7 +79,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=pi
-ExecStart=$( pwd )/run.sh
+ExecStart=$( pwd )/service.sh
 
 [Install]
 WantedBy=basic.target
