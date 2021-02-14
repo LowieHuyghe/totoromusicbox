@@ -54,6 +54,7 @@ echo "Setting up totoromusicplayer-service"
 cat <<EOF | sudo tee /etc/systemd/system/totoromusicplayer.service >/dev/null
 [Unit]
 Description=Totoro Music Player
+DefaultDependencies=false
 
 [Service]
 Type=simple
@@ -63,7 +64,7 @@ User=pi
 ExecStart=$( pwd )/run.sh
 
 [Install]
-WantedBy=basic.target
+WantedBy=local-fs.target
 EOF
 echo "Enable totoromusicplayer-service"
 sudo systemctl enable totoromusicplayer
