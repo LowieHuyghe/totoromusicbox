@@ -8,7 +8,6 @@ fi
 
 # Maintenance mode
 echo "Entering maintenance mode"
-echo 'test' >> "../../maintenance.txt"
 
 # Start certain services
 # systemd-timesyncd to finish startup
