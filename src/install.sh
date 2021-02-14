@@ -67,6 +67,7 @@ ExecStart=$( pwd )/run.sh
 WantedBy=local-fs.target
 EOF
 echo "Enable totoromusicplayer-service"
+sudo systemctl disable totoromusicplayer
 sudo systemctl enable totoromusicplayer
 
 # echo "Show all running services"
