@@ -104,6 +104,8 @@ else
   echo "Creating symbolic link in root for Music"
   sudo ln -s "$( pwd )/../music" /Music
 fi
+echo "Set ownership of Music"
+sudo chown pi:pi /Music
 
 # echo "Show all running services"
 # sudo systemctl list-unit-files --type=service --state=enabled
