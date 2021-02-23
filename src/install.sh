@@ -102,7 +102,7 @@ if [ -e "/Music" ]; then
   echo "Symbolic link in root for Music exists"
 else
   echo "Creating symbolic link in root for Music"
-  ln -s "$( pwd )/../music" /Music
+  sudo ln -s "$( pwd )/../music" /Music
 fi
 
 # echo "Show all running services"
