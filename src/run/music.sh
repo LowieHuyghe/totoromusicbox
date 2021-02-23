@@ -15,5 +15,5 @@ fi
 # Play song
 echo "Playing song"
 while true; do
-  mpg123 -z ../../music/*.mp3
+  mpg123 -Z ../../music/*.mp3
 done
