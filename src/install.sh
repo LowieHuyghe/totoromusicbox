@@ -98,6 +98,13 @@ else
   echo "authorized_keys already exists"
 fi
 
+if [ -e "/Music" ]; then
+  echo "Symbolic link in root for Music exists"
+else
+  echo "Creating symbolic link in root for Music"
+  ln -s "$( pwd )/../music" /Music
+fi
+
 # echo "Show all running services"
 # sudo systemctl list-unit-files --type=service --state=enabled
 # echo "Show startup time"
