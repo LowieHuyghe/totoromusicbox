@@ -81,7 +81,7 @@ try:
   while True:
     try:
       main()
-    except (KeyboardInterrupt, SystemExit) as baseerr:
+    except BaseException:
       # Break out of the loop
       break
     except:
