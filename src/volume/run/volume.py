@@ -52,7 +52,7 @@ try:
   GPIO.setup(pin_vol_down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
   GPIO.setup(pin_vol_up, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 12 to be an input pin and set initial value to be pulled low (off)
 
-  def button_callback(pin):
+  def button_callback(pin, channel):
     if pin == pin_vol_down:
       vol = max(0, vol - 10)
       apply_volume(vol)
