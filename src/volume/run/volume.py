@@ -59,7 +59,7 @@ try:
       vol = max(0, vol - 10)
       apply_volume(vol)
     elif pin == pin_vol_up:
-      vol = max(0, vol + 10)
+      vol = min(100, vol + 10)
       apply_volume(vol)
 
   GPIO.add_event_detect(pin_vol_down, GPIO.BOTH, callback=partial(button_callback, pin_vol_down), bouncetime=300)
