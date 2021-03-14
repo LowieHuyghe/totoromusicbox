@@ -8,7 +8,10 @@ from time import sleep
 # Constants
 pin_vol_down = 7
 pin_vol_up = 11
-default_vol = 70
+vol_min = 0
+vol_max = 100
+vol_default = 50
+vol_increment = 10
 dir_path = path.dirname(path.realpath(__file__))
 volume_file_path = path.join(dir_path, 'volume.txt')
 
@@ -26,13 +29,15 @@ def get_volume ():
   print('Getting volume')
 
   if not path.exists(volume_file_path):
-    return default_vol
+    return vol_default
 
   f = open(volume_file_path, 'r')
   try:
-    return int(f.read())
+    vol = int(f.read())
+    vol = max(vol_min, min(vol_max, vol))
+    return vol
   except ValueError:
-    return default_vol
+    return vol_default
   finally:
     f.close()
 
@@ -40,7 +45,7 @@ def apply_volume (vol):
   print('Applying volume {vol}'.format(vol=vol))
 
   exit_code = system('amixer sset PCM "{vol}%" >/dev/null && amixer sget PCM | grep "{vol}%" >/dev/null'.format(vol=vol))
-  if exit_code != 0:
+  if exit_code == 0:
     raise ValueError('Setting volume failed with exit_code {exit_code}'.format(exit_code=exit_code))
 
 vol = get_volume()
@@ -56,14 +61,14 @@ try:
     global vol
 
     if pin == pin_vol_down:
-      vol = max(0, vol - 10)
+      vol = max(vol_min, vol - vol_increment)
       apply_volume(vol)
     elif pin == pin_vol_up:
-      vol = min(100, vol + 10)
+      vol = min(vol_max, vol + vol_increment)
       apply_volume(vol)
 
-  GPIO.add_event_detect(pin_vol_down, GPIO.BOTH, callback=partial(button_callback, pin_vol_down), bouncetime=300)
-  GPIO.add_event_detect(pin_vol_up, GPIO.BOTH, callback=partial(button_callback, pin_vol_up), bouncetime=300)
+  GPIO.add_event_detect(pin_vol_down, GPIO.RISING, callback=partial(button_callback, pin_vol_down), bouncetime=300)
+  GPIO.add_event_detect(pin_vol_up, GPIO.RISING, callback=partial(button_callback, pin_vol_up), bouncetime=300)
 
   while True:
     sleep(1)
