@@ -10,6 +10,10 @@ else
   echo "mpg123 already installed"
 fi
 
+# Support gpio-usage
+echo "Installing rpi.gpio"
+sudo apt-get install -y python-rpi.gpio python3-rpi.gpio
+
 # Disable networking by default
 disable_services=(
   "dhcpcd.service"
@@ -68,6 +72,27 @@ for boot_config_line in "${boot_config_lines[@]}"; do
   fi
 done
 
+echo "Setting up totorovol-service"
+cat <<EOF | sudo tee /etc/systemd/system/totorovol.service >/dev/null
+[Unit]
+Description=Totoro Volume Regulator
+DefaultDependencies=false
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=$( pwd )/volume/service.sh
+
+[Install]
+WantedBy=local-fs.target
+EOF
+echo "Disable totorovol-service"
+sudo systemctl disable totorovol
+echo "Enable totorovol-service"
+sudo systemctl enable totorovol
+
 echo "Setting up totoromp-service"
 cat <<EOF | sudo tee /etc/systemd/system/totoromp.service >/dev/null
 [Unit]
@@ -79,7 +104,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=pi
-ExecStart=$( pwd )/service.sh
+ExecStart=$( pwd )/music/service.sh
 
 [Install]
 WantedBy=local-fs.target
