@@ -54,6 +54,9 @@ try:
   GPIO.add_event_detect(pin_vol_down, GPIO.BOTH, callback=partial(button_callback, pin_vol_down), bouncetime=300)
   GPIO.add_event_detect(pin_vol_up, GPIO.BOTH, callback=partial(button_callback, pin_vol_up), bouncetime=300)
 
+  while True:
+    sleep(1)
+
 finally:
   GPIO.cleanup()
   persist_volume(vol)
