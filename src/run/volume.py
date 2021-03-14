@@ -5,6 +5,7 @@ from os import path
 from os import system
 from time import sleep
 import signal
+import sys
 
 # Constants
 pin_vol_down = 7
@@ -83,6 +84,7 @@ def on_exit ():
 
 def sigterm_handler(_signo, _stack_frame):
   on_exit()
+  sys.exit(0)
 
 # Handle sigterm
 signal.signal(signal.SIGTERM, sigterm_handler)
