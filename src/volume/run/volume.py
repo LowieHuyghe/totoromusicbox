@@ -12,6 +12,8 @@ volume_file_path = os.path.join(dir_path, 'volume.txt')
 
 # Functions to read/write to fs
 def persist_volume (given_vol):
+  print('Persisting volume {vol}'.format(vol=given_vol))
+
   f = open(volume_file_path, 'w')
   try:
     f.write('{vol}'.format(vol=given_vol))
@@ -19,6 +21,8 @@ def persist_volume (given_vol):
     f.close()
 
 def get_volume ():
+  print('Getting volume')
+
   if not os.path.exists(volume_file_path):
     return default_vol
 
@@ -31,11 +35,14 @@ def get_volume ():
     f.close()
 
 def apply_volume (given_vol):
+  print('Applying volume {vol}'.format(vol=given_vol))
+
   exit_code = os.system('amixer sset PCM "{vol}%" && amixer sget PCM | grep "{vol}%"'.format(vol=given_vol))
   if exit_code != 0:
     raise ValueError('Setting volume failed with exit_code {exit_code}'.format(exit_code=exit_code))
 
 vol = get_volume()
+apply_volume(vol)
 
 try:
   GPIO.setwarnings(False) # Ignore warning for now
