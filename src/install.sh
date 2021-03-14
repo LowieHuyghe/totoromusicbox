@@ -72,27 +72,6 @@ for boot_config_line in "${boot_config_lines[@]}"; do
   fi
 done
 
-echo "Setting up totorovol-service"
-cat <<EOF | sudo tee /etc/systemd/system/totorovol.service >/dev/null
-[Unit]
-Description=Totoro Volume Regulator
-DefaultDependencies=false
-
-[Service]
-Type=simple
-Restart=always
-RestartSec=1
-User=pi
-ExecStart=$( pwd )/volume/service.sh
-
-[Install]
-WantedBy=local-fs.target
-EOF
-echo "Disable totorovol-service"
-sudo systemctl disable totorovol
-echo "Enable totorovol-service"
-sudo systemctl enable totorovol
-
 echo "Setting up totoromp-service"
 cat <<EOF | sudo tee /etc/systemd/system/totoromp.service >/dev/null
 [Unit]
@@ -104,7 +83,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=pi
-ExecStart=$( pwd )/music/service.sh
+ExecStart=$( pwd )/service.sh
 
 [Install]
 WantedBy=local-fs.target

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 cd "$( dirname "$0" )"
 
+# Loop
 while true; do
-  python3 ./run/volume.py
+  ./run/main.sh
   sleep 0.5
 done
