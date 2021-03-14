@@ -4,6 +4,7 @@ from functools import partial
 from os import path
 from os import system
 from time import sleep
+import signal
 
 # Constants
 pin_vol_down = 7
@@ -76,17 +77,24 @@ def main ():
   while True:
     sleep(1)
 
+def on_exit ():
+  GPIO.cleanup()
+  persist_volume(vol)
+
+def sigterm_handler(_signo, _stack_frame):
+  on_exit()
+
+# Handle sigterm
+signal.signal(signal.SIGTERM, sigterm_handler)
 # Loop
 try:
   while True:
     try:
       main()
-    except BaseException:
+    except BaseException as err:
       # Break out of the loop
       break
     except:
       print(sys.exc_info()[0])
-
 finally:
-  GPIO.cleanup()
-  persist_volume(vol)
+  on_exit()
