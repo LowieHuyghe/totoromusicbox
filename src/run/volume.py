@@ -11,7 +11,7 @@ import sys
 pin_vol_down = 7
 pin_vol_up = 11
 vol_min = 0
-vol_max = 100
+vol_max = 90
 vol_default = 50
 vol_increment = 10
 dir_path = path.dirname(path.realpath(__file__))
