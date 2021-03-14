@@ -45,7 +45,7 @@ def apply_volume (vol):
   print('Applying volume {vol}'.format(vol=vol))
 
   exit_code = system('amixer sset PCM "{vol}%" >/dev/null && amixer sget PCM | grep "{vol}%" >/dev/null'.format(vol=vol))
-  if exit_code == 0:
+  if exit_code != 0:
     raise ValueError('Setting volume failed with exit_code {exit_code}'.format(exit_code=exit_code))
 
 vol = get_volume()
