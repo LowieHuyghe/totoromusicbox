@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 from functools import partial
-import os
+from os import path
+from os import system
+from time import sleep
 
 # Constants
 pin_vol_down = 7
 pin_vol_up = 11
 default_vol = 70
-dir_path = os.path.dirname(os.path.realpath(__file__))
-volume_file_path = os.path.join(dir_path, 'volume.txt')
+dir_path = path.dirname(path.realpath(__file__))
+volume_file_path = path.join(dir_path, 'volume.txt')
 
 # Functions to read/write to fs
 def persist_volume (given_vol):
@@ -23,7 +25,7 @@ def persist_volume (given_vol):
 def get_volume ():
   print('Getting volume')
 
-  if not os.path.exists(volume_file_path):
+  if not path.exists(volume_file_path):
     return default_vol
 
   f = open(volume_file_path, 'r')
@@ -37,7 +39,7 @@ def get_volume ():
 def apply_volume (given_vol):
   print('Applying volume {vol}'.format(vol=given_vol))
 
-  exit_code = os.system('amixer sset PCM "{vol}%" && amixer sget PCM | grep "{vol}%"'.format(vol=given_vol))
+  exit_code = system('amixer sset PCM "{vol}%" >/dev/null && amixer sget PCM | grep "{vol}%" >/dev/null'.format(vol=given_vol))
   if exit_code != 0:
     raise ValueError('Setting volume failed with exit_code {exit_code}'.format(exit_code=exit_code))
 
