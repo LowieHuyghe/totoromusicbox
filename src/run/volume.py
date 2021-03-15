@@ -54,7 +54,8 @@ vol = vol_default
 def main ():
   global vol
 
-  vol = get_volume()
+  vol_disk = get_volume()
+  vol = vol_disk
   apply_volume(vol)
 
   GPIO.setwarnings(False) # Ignore warning for now
@@ -65,22 +66,27 @@ def main ():
   def button_callback(pin, channel):
     global vol
 
+    new_vol = vol
     if pin == pin_vol_down:
-      vol = max(vol_min, vol - vol_increment)
-      apply_volume(vol)
+      new_vol = max(vol_min, vol - vol_increment)
     elif pin == pin_vol_up:
-      vol = min(vol_max, vol + vol_increment)
+      new_vol = min(vol_max, vol + vol_increment)
+
+    if new_vol != vol:
+      vol = new_vol
       apply_volume(vol)
 
   GPIO.add_event_detect(pin_vol_down, GPIO.RISING, callback=partial(button_callback, pin_vol_down), bouncetime=300)
   GPIO.add_event_detect(pin_vol_up, GPIO.RISING, callback=partial(button_callback, pin_vol_up), bouncetime=300)
 
   while True:
-    sleep(1)
+    sleep(10)
+    if vol_disk != vol:
+      vol_disk = vol
+      persist_volume(vol_disk)
 
 def on_exit ():
   GPIO.cleanup()
-  persist_volume(vol)
 
 def sigterm_handler(_signo, _stack_frame):
   on_exit()
