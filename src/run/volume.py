@@ -81,6 +81,8 @@ def main ():
 
   while True:
     sleep(10)
+    # Would do this in on_exit, but the system is built to power on and off with switch,
+    # so there would be no time to run on_exit.
     if vol_disk != vol:
       vol_disk = vol
       persist_volume(vol_disk)
