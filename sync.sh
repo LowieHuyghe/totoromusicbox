@@ -9,10 +9,9 @@ echo "Create temp"
 TEMP_DIR="$( mktemp -d )"
 
 echo "Create symlinks"
-count=0
 for f in "$SRC_DIR"/*.mp3; do
-  count=$((count+1))
-  ln -s "$f" "$TEMP_DIR/$count.mp3"
+  SHA="$( echo "$f" | shasum | cut -d" " -f1 )"
+  ln -s "$f" "$TEMP_DIR/${SHA:0:10}.mp3"
 done
 
 echo "Rsync"
