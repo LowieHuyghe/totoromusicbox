@@ -2,7 +2,7 @@
 cd "$( dirname "$0" )"
 
 # Make sure amixer is ready
-if ! amixer sset PCM "50%" >/dev/null && amixer sget PCM | grep "50%" >/dev/null; then
+if ! amixer sset PCM "10%" >/dev/null && amixer sget PCM | grep "10%" >/dev/null; then
   echo "amixer not ready yet"
   exit 1
 fi
