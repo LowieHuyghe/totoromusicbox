@@ -2,13 +2,12 @@
 cd "$( dirname "$0" )"
 
 # Make sure amixer is ready
-if ! amixer sset PCM "10%" >/dev/null && amixer sget PCM | grep "10%" >/dev/null; then
+if amixer sset PCM "10%" >/dev/null && amixer sget PCM | grep "10%" >/dev/null; then
+  echo "amixer good to go"
+else
   echo "amixer not ready yet"
   exit 1
 fi
-
-# Maintenance
-./maintenance.sh &
 
 # Volume
 ./volume.py &
