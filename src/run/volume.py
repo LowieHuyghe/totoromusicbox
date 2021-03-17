@@ -16,6 +16,7 @@ vol_default = 50
 vol_increment = 10
 dir_path = path.dirname(path.realpath(__file__))
 volume_file_path = path.join(dir_path, 'volume.txt')
+gpio_initialised = False
 
 # Functions to read/write to fs
 def persist_volume (vol):
@@ -50,14 +51,23 @@ def apply_volume (vol):
   if exit_code != 0:
     raise ValueError('Setting volume failed with exit_code {exit_code}'.format(exit_code=exit_code))
 
-vol = vol_default
-def main ():
+def init ():
   global vol
 
   vol_disk = get_volume()
   vol = vol_disk
   apply_volume(vol)
 
+  return vol
+
+vol = vol_default
+def main ():
+  global vol
+  global gpio_initialised
+
+  vol_disk = init()
+
+  gpio_initialised = True
   GPIO.setwarnings(False) # Ignore warning for now
   GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
   GPIO.setup(pin_vol_down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
@@ -88,7 +98,9 @@ def main ():
       persist_volume(vol_disk)
 
 def on_exit ():
-  GPIO.cleanup()
+  global gpio_initialised
+  if gpio_initialised:
+    GPIO.cleanup()
 
 def sigterm_handler(_signo, _stack_frame):
   on_exit()
@@ -98,13 +110,16 @@ def sigterm_handler(_signo, _stack_frame):
 signal.signal(signal.SIGTERM, sigterm_handler)
 # Loop
 try:
-  while True:
-    try:
-      main()
-    except BaseException as err:
-      # Break out of the loop
-      break
-    except:
-      print(sys.exc_info()[0])
+  if 'init' in sys.argv:
+    init()
+  else:
+    while True:
+      try:
+        main()
+      except BaseException as err:
+        # Break out of the loop
+        break
+      except:
+        print(sys.exc_info()[0])
 finally:
   on_exit()
