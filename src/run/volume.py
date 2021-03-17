@@ -7,6 +7,9 @@ from time import sleep
 import signal
 import sys
 
+class AmixerError(ValueError):
+  pass
+
 # Constants
 pin_vol_down = 7
 pin_vol_up = 11
@@ -49,7 +52,7 @@ def apply_volume (vol):
 
   exit_code = system('amixer sset PCM "{vol}%" >/dev/null && amixer sget PCM | grep "{vol}%" >/dev/null'.format(vol=vol))
   if exit_code != 0:
-    raise ValueError('Setting volume failed with exit_code {exit_code}'.format(exit_code=exit_code))
+    raise AmixerError('Setting volume failed with exit_code {exit_code}'.format(exit_code=exit_code))
 
 def init ():
   global vol
@@ -100,6 +103,7 @@ def main ():
 def on_exit ():
   global gpio_initialised
   if gpio_initialised:
+    gpio_initialised = False
     GPIO.cleanup()
 
 def sigterm_handler(_signo, _stack_frame):
@@ -121,5 +125,9 @@ try:
         break
       except:
         print(sys.exc_info()[0])
+except AmixerError:
+  print("amixer was not ready yet")
+  on_exit()
+  exit(1)
 finally:
   on_exit()
