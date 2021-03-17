@@ -2,7 +2,7 @@
 cd "$( dirname "$0" )"
 
 # Volume
-./volume.py init
+./volume.py init || exit 1
 ./volume.py &
 
 # Music
