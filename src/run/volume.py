@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+#!/usr/bin/env python
+from gpiozero import Button
 from functools import partial
 from os import path
 from os import system
@@ -11,15 +11,14 @@ class AmixerError(ValueError):
   pass
 
 # Constants
-pin_vol_down = 7
-pin_vol_up = 11
+pin_vol_down = 17
+pin_vol_up = 23
 vol_min = 10
 vol_max = 90
 vol_default = 50
 vol_increment = 10
 dir_path = path.dirname(path.realpath(__file__))
 volume_file_path = path.join(dir_path, 'volume.txt')
-gpio_initialised = False
 
 # Functions to read/write to fs
 def persist_volume (vol):
@@ -66,45 +65,28 @@ def init ():
 vol = vol_default
 def main ():
   global vol
-  global gpio_initialised
 
-  vol_disk = init()
+  vol = init()
 
-  gpio_initialised = True
-  GPIO.setwarnings(False) # Ignore warning for now
-  GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-  GPIO.setup(pin_vol_down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-  GPIO.setup(pin_vol_up, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 12 to be an input pin and set initial value to be pulled low (off)
+  volup_button = Button(pin_vol_up)
+  voldown_button = Button(pin_vol_down)
 
-  def button_callback(pin, channel):
-    global vol
-
+  while True:
     new_vol = vol
-    if pin == pin_vol_down:
-      new_vol = max(vol_min, vol - vol_increment)
-    elif pin == pin_vol_up:
+    if volup_button.is_pressed:
       new_vol = min(vol_max, vol + vol_increment)
+    if voldown_button.is_pressed:
+      new_vol = max(vol_min, vol - vol_increment)
 
     if new_vol != vol:
       vol = new_vol
       apply_volume(vol)
+      persist_volume(vol)
 
-  GPIO.add_event_detect(pin_vol_down, GPIO.RISING, callback=partial(button_callback, pin_vol_down), bouncetime=300)
-  GPIO.add_event_detect(pin_vol_up, GPIO.RISING, callback=partial(button_callback, pin_vol_up), bouncetime=300)
-
-  while True:
-    sleep(10)
-    # Would do this in on_exit, but the system is built to power on and off with switch,
-    # so there would be no time to run on_exit.
-    if vol_disk != vol:
-      vol_disk = vol
-      persist_volume(vol_disk)
+      time.sleep(0.3)
 
 def on_exit ():
-  global gpio_initialised
-  if gpio_initialised:
-    gpio_initialised = False
-    GPIO.cleanup()
+  pass
 
 def sigterm_handler(_signo, _stack_frame):
   on_exit()
