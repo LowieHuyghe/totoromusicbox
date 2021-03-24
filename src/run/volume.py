@@ -102,7 +102,8 @@ try:
     while True:
       try:
         main()
-      except BaseException as err:
+      except SystemExit, KeyboardInterrupt as err:
+        print(sys.exc_info()[0])
         # Break out of the loop
         break
       except:
