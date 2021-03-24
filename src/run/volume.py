@@ -12,7 +12,7 @@ class AmixerError(ValueError):
 
 # Constants
 pin_vol_down = 17
-pin_vol_up = 23
+pin_vol_up = 27
 vol_min = 10
 vol_max = 90
 vol_default = 50
