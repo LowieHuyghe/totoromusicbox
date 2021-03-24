@@ -22,6 +22,8 @@ volume_file_path = path.join(dir_path, 'volume.txt')
 
 # Functions to read/write to fs
 def persist_volume (vol):
+  global volume_file_path
+
   print('Persisting volume {vol}'.format(vol=vol))
 
   f = open(volume_file_path, 'w')
@@ -31,6 +33,11 @@ def persist_volume (vol):
     f.close()
 
 def get_volume ():
+  global volume_file_path
+  global vol_min
+  global vol_max
+  global vol_default
+
   print('Getting volume')
 
   if not path.exists(volume_file_path):
@@ -63,13 +70,15 @@ def init ():
   return vol
 
 vol = vol_default
-def main ():
+def main (volup_button, voldown_button):
   global vol
+  global pin_vol_down
+  global pin_vol_up
+  global vol_min
+  global vol_max
+  global vol_increment
 
   vol = init()
-
-  volup_button = Button(pin_vol_up)
-  voldown_button = Button(pin_vol_down)
 
   while True:
     new_vol = vol
@@ -99,9 +108,13 @@ try:
   if 'init' in sys.argv:
     init()
   else:
+    # Init here as we can only do this once
+    volup_button = Button(pin_vol_up)
+    voldown_button = Button(pin_vol_down)
+
     while True:
       try:
-        main()
+        main(volup_button, voldown_button)
       except (SystemExit, KeyboardInterrupt) as err:
         print(err)
         # Break out of the loop
