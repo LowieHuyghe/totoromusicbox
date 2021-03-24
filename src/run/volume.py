@@ -11,10 +11,10 @@ class AmixerError(ValueError):
   pass
 
 # Constants
-pin_vol_down = 17
-pin_vol_up = 27
+pin_vol_down = 27
+pin_vol_up = 17
 vol_min = 10
-vol_max = 90
+vol_max = 100
 vol_default = 50
 vol_increment = 10
 dir_path = path.dirname(path.realpath(__file__))
