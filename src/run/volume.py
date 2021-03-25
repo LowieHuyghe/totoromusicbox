@@ -83,8 +83,10 @@ def main (volup_button, voldown_button):
   while True:
     new_vol = vol
     if volup_button.is_pressed:
+      print('volup_button pressed')
       new_vol = min(vol_max, vol + vol_increment)
     if voldown_button.is_pressed:
+      print('voldown_button pressed')
       new_vol = max(vol_min, vol - vol_increment)
 
     if new_vol != vol:
