@@ -103,7 +103,7 @@ def main ():
 
     if new_vol is None:
       # Performance optim so the script doesn't use that much cpu.
-      sleep(0.01)
+      sleep(0.005)
       continue
 
     if new_vol != vol:
