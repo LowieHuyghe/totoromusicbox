@@ -92,11 +92,11 @@ def main ():
     pin_vol_down_state = GPIO.input(pin_vol_down)
 
     new_vol = None
-    if pin_vol_up_state == GPIO.LOW:
-      print('volup_button pressed as {value} equals {expected}'.format(value=json.dumps(pin_vol_up_state), expected=json.dumps(GPIO.LOW)))
+    if pin_vol_up_state == GPIO.HIGH:
+      print('volup_button pressed as {value} equals {expected}'.format(value=json.dumps(pin_vol_up_state), expected=json.dumps(GPIO.HIGH)))
       new_vol = min(vol_max, vol + vol_increment)
-    if pin_vol_down_state == GPIO.LOW:
-      print('voldown_button pressed as {value} equals {expected}'.format(value=json.dumps(pin_vol_down_state), expected=json.dumps(GPIO.LOW)))
+    if pin_vol_down_state == GPIO.HIGH:
+      print('voldown_button pressed as {value} equals {expected}'.format(value=json.dumps(pin_vol_down_state), expected=json.dumps(GPIO.HIGH)))
       new_vol = max(vol_min, vol - vol_increment)
 
     if new_vol is None:
