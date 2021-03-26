@@ -81,7 +81,7 @@ def main (volup_button, voldown_button):
   vol = init()
 
   while True:
-    new_vol = vol
+    new_vol = None
     if volup_button.is_pressed:
       print('volup_button pressed')
       new_vol = min(vol_max, vol + vol_increment)
@@ -89,12 +89,15 @@ def main (volup_button, voldown_button):
       print('voldown_button pressed')
       new_vol = max(vol_min, vol - vol_increment)
 
+    if new_vol is None:
+      continue
+
     if new_vol != vol:
       vol = new_vol
       apply_volume(vol)
       persist_volume(vol)
 
-      sleep(0.3)
+    sleep(0.3)
 
 def on_exit ():
   pass
