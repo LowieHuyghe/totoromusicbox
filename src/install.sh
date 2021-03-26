@@ -12,7 +12,7 @@ fi
 
 # Support gpio-usage
 echo "Installing rpi.gpio"
-sudo apt-get install -y python-pip python-gpiozero
+sudo apt-get install -y python-rpi.gpio python3-rpi.gpio
 
 # Disable networking by default
 disable_services=(
