@@ -117,6 +117,7 @@ def on_exit ():
   global gpio_initialised
   if gpio_initialised:
     gpio_initialised = False
+    print('cleaning up gpio')
     GPIO.cleanup()
 
 def sigterm_handler(_signo, _stack_frame):
@@ -140,7 +141,7 @@ try:
       except:
         print(sys.exc_info()[0])
 except AmixerError:
-  print("amixer was not ready yet")
+  print('amixer was not ready yet')
   on_exit()
   exit(1)
 finally:
