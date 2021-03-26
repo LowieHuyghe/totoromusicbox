@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-from gpiozero import Button
+#!/usr/bin/env python3
+import RPi.GPIO as GPIO
 from functools import partial
 from os import path
 from os import system
@@ -19,6 +19,7 @@ vol_default = 50
 vol_increment = 10
 dir_path = path.dirname(path.realpath(__file__))
 volume_file_path = path.join(dir_path, 'volume.txt')
+gpio_initialised = False
 
 # Functions to read/write to fs
 def persist_volume (vol):
@@ -77,15 +78,22 @@ def main (volup_button, voldown_button):
   global vol_min
   global vol_max
   global vol_increment
+  global gpio_initialised
 
   vol = init()
 
+  gpio_initialised = True
+  GPIO.setwarnings(False)
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setup(pin_vol_down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+  GPIO.setup(pin_vol_up, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
   while True:
     new_vol = None
-    if volup_button.is_pressed:
+    if GPIO.input(pin_vol_up):
       print('volup_button pressed')
       new_vol = min(vol_max, vol + vol_increment)
-    if voldown_button.is_pressed:
+    if GPIO.input(pin_vol_down):
       print('voldown_button pressed')
       new_vol = max(vol_min, vol - vol_increment)
 
@@ -100,7 +108,10 @@ def main (volup_button, voldown_button):
     sleep(0.5)
 
 def on_exit ():
-  pass
+  global gpio_initialised
+  if gpio_initialised:
+    gpio_initialised = False
+    GPIO.cleanup()
 
 def sigterm_handler(_signo, _stack_frame):
   on_exit()
