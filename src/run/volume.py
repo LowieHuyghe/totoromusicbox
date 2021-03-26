@@ -89,12 +89,17 @@ def main ():
   GPIO.setup(pin_vol_up, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
   while True:
+    pin_vol_up_state = GPIO.input(pin_vol_up)
+    pin_vol_down_state = GPIO.input(pin_vol_down)
+
     new_vol = None
-    if GPIO.input(pin_vol_up) == False:
+    if pin_vol_up_state == False:
       print('volup_button pressed')
+      print(type(pin_vol_up_state))
       new_vol = min(vol_max, vol + vol_increment)
-    if GPIO.input(pin_vol_down) == False:
+    if pin_vol_down_state == False:
       print('voldown_button pressed')
+      print(type(pin_vol_down_state))
       new_vol = max(vol_min, vol - vol_increment)
 
     if new_vol is None:
