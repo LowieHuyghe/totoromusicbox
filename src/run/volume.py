@@ -90,10 +90,10 @@ def main ():
 
   while True:
     new_vol = None
-    if GPIO.input(pin_vol_up):
+    if GPIO.input(pin_vol_up) == False:
       print('volup_button pressed')
       new_vol = min(vol_max, vol + vol_increment)
-    if GPIO.input(pin_vol_down):
+    if GPIO.input(pin_vol_down) == False:
       print('voldown_button pressed')
       new_vol = max(vol_min, vol - vol_increment)
 
