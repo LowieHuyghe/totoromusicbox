@@ -71,7 +71,7 @@ def init ():
   return vol
 
 vol = vol_default
-def main (volup_button, voldown_button):
+def main ():
   global vol
   global pin_vol_down
   global pin_vol_up
@@ -124,13 +124,9 @@ try:
   if 'init' in sys.argv:
     init()
   else:
-    # Init here as we can only do this once
-    volup_button = Button(pin_vol_up)
-    voldown_button = Button(pin_vol_down)
-
     while True:
       try:
-        main(volup_button, voldown_button)
+        main()
       except (SystemExit, KeyboardInterrupt) as err:
         print(err)
         # Break out of the loop
