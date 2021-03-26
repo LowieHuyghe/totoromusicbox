@@ -107,7 +107,7 @@ def main ():
       apply_volume(vol)
       persist_volume(vol)
 
-    sleep(0.5)
+    sleep(0.3)
 
 def on_exit ():
   global gpio_initialised
