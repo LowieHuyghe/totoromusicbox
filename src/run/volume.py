@@ -95,11 +95,11 @@ def main ():
     new_vol = None
     if pin_vol_up_state == False:
       print('volup_button pressed')
-      print(type(pin_vol_up_state))
+      print(pin_vol_up_state)
       new_vol = min(vol_max, vol + vol_increment)
     if pin_vol_down_state == False:
       print('voldown_button pressed')
-      print(type(pin_vol_down_state))
+      print(pin_vol_down_state)
       new_vol = max(vol_min, vol - vol_increment)
 
     if new_vol is None:
