@@ -86,8 +86,6 @@ def main ():
   gpio_initialised = True
   GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
-  GPIO.setup(pin_vol_down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-  GPIO.setup(pin_vol_up, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
   while True:
     pin_vol_up_state = GPIO.input(pin_vol_up)
@@ -131,15 +129,16 @@ try:
   if 'init' in sys.argv:
     init()
   else:
-    while True:
-      try:
-        main()
-      except (SystemExit, KeyboardInterrupt) as err:
-        print(err)
-        # Break out of the loop
-        break
-      except:
-        print(sys.exc_info()[0])
+    pass
+    # while True:
+    #   try:
+    #     main()
+    #   except (SystemExit, KeyboardInterrupt) as err:
+    #     print(err)
+    #     # Break out of the loop
+    #     break
+    #   except:
+    #     print(sys.exc_info()[0])
 except AmixerError:
   print('amixer was not ready yet')
   on_exit()
