@@ -97,7 +97,7 @@ def main (volup_button, voldown_button):
       apply_volume(vol)
       persist_volume(vol)
 
-    sleep(1)
+    sleep(0.5)
 
 def on_exit ():
   pass
