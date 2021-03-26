@@ -98,6 +98,8 @@ def main ():
       new_vol = max(vol_min, vol - vol_increment)
 
     if new_vol is None:
+      # Performance optim so the script doesn't use that much cpu.
+      sleep(0.001)
       continue
 
     if new_vol != vol:
