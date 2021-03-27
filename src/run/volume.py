@@ -136,8 +136,8 @@ try:
         print(err)
         # Break out of the loop
         break
-      except:
-        print(sys.exc_info()[0])
+      except BaseException as err:
+        print(err)
 except AmixerError:
   print('amixer was not ready yet')
   on_exit()
