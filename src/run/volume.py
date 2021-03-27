@@ -86,8 +86,8 @@ def main ():
   gpio_initialised = True
   GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
-  GPIO.setup(pin_vol_down, GPIO.IN)
-  GPIO.setup(pin_vol_up, GPIO.IN)
+  GPIO.setup(pin_vol_down, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
+  GPIO.setup(pin_vol_up, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
 
   while True:
     pin_vol_up_state = GPIO.input(pin_vol_up)
