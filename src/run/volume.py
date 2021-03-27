@@ -129,16 +129,15 @@ try:
   if 'init' in sys.argv:
     init()
   else:
-    pass
-    # while True:
-    #   try:
-    #     main()
-    #   except (SystemExit, KeyboardInterrupt) as err:
-    #     print(err)
-    #     # Break out of the loop
-    #     break
-    #   except:
-    #     print(sys.exc_info()[0])
+    while True:
+      try:
+        main()
+      except (SystemExit, KeyboardInterrupt) as err:
+        print(err)
+        # Break out of the loop
+        break
+      except:
+        print(sys.exc_info()[0])
 except AmixerError:
   print('amixer was not ready yet')
   on_exit()
