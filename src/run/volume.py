@@ -13,7 +13,7 @@ class AmixerError(ValueError):
 
 # Constants
 pin_vol_down = 17
-pin_vol_up = 27
+pin_vol_up = 22
 vol_min = 5
 vol_max = 95
 vol_default = 50
@@ -88,8 +88,6 @@ def main ():
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(pin_vol_down, GPIO.IN)
   GPIO.setup(pin_vol_up, GPIO.IN)
-  GPIO.setup(22, GPIO.IN)
-  GPIO.setup(23, GPIO.IN)
 
   while True:
     pin_vol_up_state = GPIO.input(pin_vol_up)
