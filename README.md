@@ -18,7 +18,7 @@ Made with ♥ by Lowie
 * Micro SD Card (UHS Speed Class 1 for faster startup, see ./src/install.sh)
 * Micro USB Charger with On/Off Switch
 * [Adafruit I2S 3W Stereo Speaker Bonnet](https://www.adafruit.com/product/3346)
-* [3W 4Ω Stereo Speaker Set](https://www.amazon.de/gp/product/B0894NY3SZ)
+* [3W Stereo Speaker Set](https://www.amazon.de/gp/product/B0894NY3SZ)
 * MDF Panel (for easier sanding), screws, glue, paint, tactile switches, led, low-voltage-cable, resistors,...
 * Variety of tools
 * Lots of time and patience 😉
