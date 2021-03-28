@@ -2,11 +2,11 @@
 
 Made with ♥ by Peter Lowie
 
-![Alt text](./images/front.jpg "Totoro Music Box")
+![Totoro Music Box](./images/front.jpg "Totoro Music Box")
 
 * [Requirements](#requirements)
 * [Process](#process)
-* [Raspberry Pi Setup](#setup)
+* [Raspberry Pi Setup](#rpisetup)
 
 
 <span id="requirements"></span>
@@ -16,8 +16,9 @@ Made with ♥ by Peter Lowie
 * Micro SD Card
 * Adafruit I2S 3W Stereo Speaker Bonnet
 * 3W 4 Ohm Stereo Speaker Set
-* MDF Wood Panel, screws, glue, & tools
-* Loads of time and patience
+* MDF Wood Panel (for easy sanding), screws, glue, & paint
+* Variety of tools
+* Lots of time and patience 😉
 
 
 <span id="process"></span>
@@ -56,7 +57,7 @@ Made with ♥ by Peter Lowie
 <img src="./images/18.jpeg" alt="drawing" width="300"/>
 
 
-<span id="setup"></span>
+<span id="rpisetup"></span>
 ## Raspberry Pi Setup
 
 ``` bash
