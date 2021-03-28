@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 cd "$( dirname "$0" )"
 
-# Volume
+# Init volume first so we're sure amixer is loaded and available
 ./volume.py init || exit 1
+# Volume control
 ./volume.py &
 
-# Music
+# Music player
 ./music.sh &
 
 # Loop
