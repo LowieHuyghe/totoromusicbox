@@ -1,4 +1,5 @@
-# totoromusicplayer
+# Totoro Music Box
+Made with ♥ by Peter Lowie
 
 ## Setup
 ```
