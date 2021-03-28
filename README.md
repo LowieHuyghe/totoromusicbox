@@ -16,7 +16,7 @@ Made with ♥ by Peter Lowie
 * [Slic3r](https://slic3r.org/) to single out Totoro and slice the 3D Model
 * [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/)
 * Micro SD Card (UHS Speed Class 1 for faster startup, see ./src/install.sh)
-* Micro USB Charget with On/Off Switch
+* Micro USB Charger with On/Off Switch
 * [Adafruit I2S 3W Stereo Speaker Bonnet](https://www.adafruit.com/product/3346)
 * [3W 4Ω Stereo Speaker Set](https://www.amazon.de/gp/product/B0894NY3SZ)
 * MDF Panel (for easier sanding), screws, glue, paint, tactile switches, led, low-voltage-cable, resistors,...
