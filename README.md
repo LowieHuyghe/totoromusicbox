@@ -16,7 +16,7 @@ Made with ♥ by Peter Lowie
 * Micro SD Card
 * Adafruit I2S 3W Stereo Speaker Bonnet
 * 3W 4 Ohm Stereo Speaker Set
-* MDF Wood Panel (for easy sanding), screws, glue, & paint
+* MDF Wood Panel (for easier sanding), screws, glue, & paint
 * Variety of tools
 * Lots of time and patience 😉
 
