@@ -12,11 +12,14 @@ Made with ♥ by Peter Lowie
 <span id="requirements"></span>
 ## Requirements
 
-* Raspberry Pi Zero
-* Micro SD Card
-* Adafruit I2S 3W Stereo Speaker Bonnet
-* 3W 4 Ohm Stereo Speaker Set
-* MDF Wood Panel (for easier sanding), screws, glue, & paint
+* ["Totoro Family" 3D Model by PatrickFanart](https://www.myminifactory.com/object/3d-print-totoro-family-105112)
+* [Slic3r](https://slic3r.org/) to single out Totoro and slice it
+* [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/)
+* Micro SD Card (U1 for faster startup, see ./src/install.sh)
+* Micro USB Charget with On/Off Switch
+* [Adafruit I2S 3W Stereo Speaker Bonnet](https://www.adafruit.com/product/3346)
+* [3W 4Ω Stereo Speaker Set](https://www.amazon.de/gp/product/B0894NY3SZ)
+* MDF Wood Panel (for easier sanding), screws, glue, paint, tactile switches, led, low-voltage-cable, resistors,...
 * Variety of tools
 * Lots of time and patience 😉
 
@@ -25,36 +28,38 @@ Made with ♥ by Peter Lowie
 ## Process
 
 ### 1. Creating the "slices"
-<img src="./images/1.jpeg" alt="drawing" height="300"/>
-<img src="./images/2.jpeg" alt="drawing" height="300"/>
-<img src="./images/3.jpeg" alt="drawing" width="300"/>
+<img src="./images/1.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/2.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/3.jpeg" alt="drawing" width="300" style="display:block;"/>
 
 ### 2. Sanding it down
-<img src="./images/4.jpeg" alt="drawing" width="300"/>
-<img src="./images/5.jpeg" alt="drawing" height="300"/>
-<img src="./images/6.jpeg" alt="drawing" height="300"/>
-<img src="./images/7.jpeg" alt="drawing" height="300"/>
-<img src="./images/8.jpeg" alt="drawing" height="300"/>
+<img src="./images/4.jpeg" alt="drawing" width="300" style="display:block;"/>
+<img src="./images/5.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/6.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/7.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/8.jpeg" alt="drawing" height="300" style="display:block;"/>
 
 ### 3. Preparing the electronics and internals
-<img src="./images/9.jpeg" alt="drawing" height="300"/>
-<img src="./images/10.jpeg" alt="drawing" height="300"/>
-<img src="./images/11.jpeg" alt="drawing" height="300"/>
+<img src="./images/9.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/10.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/11.jpeg" alt="drawing" height="300" style="display:block;"/>
 
 ### 4. Glueing it all together
-<img src="./images/12.jpeg" alt="drawing" height="300"/>
+<img src="./images/12.jpeg" alt="drawing" height="300" style="display:block;"/>
 
 ### 5. Painting Totoro
-<img src="./images/13.jpeg" alt="drawing" width="300"/>
-<img src="./images/14.jpeg" alt="drawing" height="300"/>
-<img src="./images/15.jpeg" alt="drawing" height="300"/>
+<img src="./images/13.jpeg" alt="drawing" width="300" style="display:block;"/>
+<img src="./images/14.jpeg" alt="drawing" height="300" style="display:block;"/>
+<img src="./images/15.jpeg" alt="drawing" height="300" style="display:block;"/>
 
 ### 6. Installation and soldering of the electronics
-<img src="./images/16.jpeg" alt="drawing" width="300"/>
-<img src="./images/17.jpeg" alt="drawing" width="300"/>
+Using external pull-down resistors as they proved more reliable for long time usage.
+
+<img src="./images/16.jpeg" alt="drawing" width="300" style="display:block;"/>
+<img src="./images/17.jpeg" alt="drawing" width="300" style="display:block;"/>
 
 ### 7. The finished product
-<img src="./images/18.jpeg" alt="drawing" width="300"/>
+<img src="./images/18.jpeg" alt="drawing" width="300" style="display:block;"/>
 
 
 <span id="rpisetup"></span>
