@@ -93,15 +93,6 @@ sudo systemctl disable totoromp
 echo "Enable totoromp-service"
 sudo systemctl enable totoromp
 
-if ! [ -f "/home/pi/.ssh/authorized_keys" ]; then
-  echo "Creating authorized_keys"
-  cat <<EOF > /home/pi/.ssh/authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDMggwhKF7jLu+pKl+4OlRzzfb49yJCvqYCHbh8WVf6DHnnaxSAb0h0/m4FgKlCOc35nSTCzRqLziw99GQ6TXBI1KJF4TCG/3GgjHOYtJLlmLb3eZU034HrBGJyT6bv9yCdbUawr5jS9yR6bz/3RiY6xcrYdvVpFLjey4aPWpMuTCPMVh3zvH/GDoLn77RXHm8NSg55ysUb2WPZvlkA/zRtJtUod0LNi8HyaZPl5anRLyyBCoBucM8q22DVHt2DGgmuCLzOoB07xM9VKYh6Pia2CvXDIcWwq4tZvLIOj5gFOEqr0cDmTYyp/ajqG8jJV/kOhL6aOhZqS0OhOqmWWR0tkk+rIO1tc2N5MrwR3MOoS3XkrcBDTPs8K9TJJ754Wn6YOt4U1IfyFYevOxirdx9uXTqoQb36cb7NUk9cWVwfG3eFLejUqH/XH1+lgcZxGp1hwrMp4KkF8CiWrjcQzyVeUqI7l+Uvt94vO/q4TDVkmqwNgYMmKyUzESFLyCpa/1R1NW09TpL1j8OmeACVKhOhqmCpu9HvOSQIyIscUR00wdTCmYK+PQmKBkv00Thc/HsrDLjUrrd6V/22TeO/ff4AwVKEMadk+luUn/hySy6JSIW3L/B9KzDkS2cRDTcY0m96fjNtHglAMKwN4hQ9tbGlyuY7BaBdViOactVsh6iV9Q== iam@lowiehuyghe.com
-EOF
-else
-  echo "authorized_keys already exists"
-fi
-
 if [ -e "/Music" ]; then
   echo "Symbolic link in root for Music exists"
 else
