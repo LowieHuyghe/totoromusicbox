@@ -7,6 +7,7 @@ Made with ♥ by Peter Lowie
 * [Requirements](#requirements)
 * [Process](#process)
 * [Raspberry Pi Setup](#rpisetup)
+* [Room for improvement](#improvements)
 
 
 <span id="requirements"></span>
@@ -88,3 +89,18 @@ cd totoromusicplayer
 # Run install to optimize startup, and setup the service.
 ./src/install.sh
 ```
+
+
+<span id="improvements"></span>
+## Room for improvement
+
+For this project I started off with what I knew and learned a lot along the way.
+I enjoyed making it and am **very happy** with the final result.
+
+As with everything, there's always some room for improvement:
+
+* Even with all the optims, startup time is still 20 seconds.
+* Running a complete OS is not really necessary.
+
+A solution for both could be the [Adafruit Music Maker FeatherWing with Amp](https://www.adafruit.com/product/3436)
+controlled by an ESP8266.
