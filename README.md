@@ -16,7 +16,7 @@ Made with ♥ by Peter Lowie
 * ["Totoro Family" 3D Model by PatrickFanart](https://www.myminifactory.com/object/3d-print-totoro-family-105112)
 * [Slic3r](https://slic3r.org/) to single out Totoro and slice the 3D Model
 * [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/)
-* Micro SD Card (UHS Speed Class 1 for faster startup, see ./src/install.sh)
+* Micro SD Card (UHS Speed Class 1 for faster startup, see `./src/install.sh`)
 * Micro USB Charger with On/Off Switch
 * [Adafruit I2S 3W Stereo Speaker Bonnet](https://www.adafruit.com/product/3346)
 * [3W Stereo Speaker Set](https://www.amazon.de/gp/product/B0894NY3SZ)
@@ -88,6 +88,8 @@ cd totoromusicplayer
 
 # Run install to optimize startup, and setup the service.
 ./src/install.sh
+
+# Add your mp3-files to ./music/
 ```
 
 
